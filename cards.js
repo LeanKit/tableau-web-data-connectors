@@ -46,7 +46,13 @@
     };
 
     myConnector.getData = function (table, doneCallback) {
-        $.getJSON("https://demoarea.leankit.com/io/reporting/export/cards.json?boardId=509666333&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ1MjUzMTgxNyIsIm5hbWUiOiJndW5ueUBsZWFua2l0LmNvbSIsImVtYWlsIjoiZ3VubnlAbGVhbmtpdC5jb20iLCJvcmdJZCI6IjIwNjE3MDA5NCIsImNhY2hlRXhwaXJhdGlvbiI6NjAsImV4cCI6MTUwMTYwNDgwOSwiaWF0IjoxNTAxNjAxMjA5fQ.sxN5ZxjhdIB2B0I4KmvqA4RxX79bcrcTCGP0QUKf3Wg", function(resp) {
+        var domain, token;
+        var data = tableau.connectionData.split("|");
+        domain = data[0];
+        token = data[1];
+        var url = 'https://' + encodeURIComponent(domain) + '/io/reporting/export/cards.json?token=' + encodeURIComponent(token);
+        tableau.log(url);
+        $.getJSON(url, function(resp) {
             var cards = resp,
                 tableData = [];
 
@@ -96,6 +102,7 @@
 
     $(document).ready(function () {
     $("#submitButton").click(function () {
+        tableau.connectionData = $('#formGroupLeanKitUrl').val().trim() + '|' + $('#formGroupReportingApiToken').val().trim()
         tableau.connectionName = "LeanKit Cards";
         tableau.submit();
     });
