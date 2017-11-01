@@ -1,4 +1,12 @@
 ( function() {
+	const apiError = err => {
+		console.log( "error:", err );
+		$( "#errorMsg" ).html( "Sorry, there was an error with your login credentials or token. Please verify and try again." ).show();
+		$( "#auth" ).show();
+		$( "#boards" ).hide();
+		$( "#getBoards" ).removeClass( "is-loading" );
+	};
+
 	const createConnector = () => {
 		// Create the connector object
 		const connector = tableau.makeConnector();
@@ -108,9 +116,6 @@
 		const url = `${ baseUrl }export/boards.json?token=${ token }`;
 		return axios.get( url ).then( res => {
 			return res.data;
-		} ).catch( err => {
-			tableau.log( `There was an error fetching boards ${ err }` );
-			tableau.abortWithError( "Sorry, there was an error getting a list of your boards." );
 		} );
 	};
 
@@ -121,9 +126,6 @@
 			accountName: account
 		} ).then( res => {
 			return res.data.token;
-		} ).catch( err => {
-			tableau.log( `There was an error getting an API token ${ err }` );
-			tableau.abortWithError( "Sorry, there was an error getting your API token." );
 		} );
 	};
 
@@ -138,6 +140,7 @@
 		$( "#boards" ).show();
 	};
 
+	// Create event listeners for when the user submits the form
 	$( document ).ready( function() {
 		const connector = createConnector();
 		tableau.registerConnector( connector );
@@ -156,6 +159,7 @@
 		} );
 
 		$( "#getBoards" ).click( () => {
+			$( "#errorMsg" ).hide();
 			$( "#getBoards" ).addClass( "is-loading" );
 			const baseUrl = normalizeBaseUrl( $( "#account" ).val().trim() );
 			$( "#account" ).val( baseUrl );
@@ -170,10 +174,11 @@
 						$( "#token" ).val( token );
 						return getBoards( { baseUrl, token } );
 					} )
-					.then( displayBoards );
+					.then( displayBoards )
+					.catch( apiError );
 			} else {
 				const token = $( "#token" ).val().trim();
-				getBoards( { baseUrl, token } ).then( displayBoards );
+				getBoards( { baseUrl, token } ).then( displayBoards ).catch( apiError );
 			}
 		} );
 
