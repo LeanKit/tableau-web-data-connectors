@@ -1,10 +1,10 @@
 ( function() {
 	const apiError = err => {
-		console.log( "error:", err );
 		$( "#errorMsg" ).html( "Sorry, there was an error with your login credentials or token. Please verify and try again." ).show();
 		$( "#auth" ).show();
 		$( "#boards" ).hide();
 		$( "#getBoards" ).removeClass( "is-loading" );
+		tableau.log( `There was an api error ${ err }` );
 	};
 
 	const createConnector = () => {
