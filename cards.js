@@ -128,16 +128,16 @@
 	};
 
 	const displayBoards = boards => {
-		const boardList = $( "#boardList" );
-		boardList.empty();
+		const html = [];
+		html.push( "<option value=\"0\">All Boards</option>" );
 		boards.forEach( board => {
-			$( "<option>" ).val( board.boardId ).text( board.boardTitle ).appendTo( "#boardList" );
+			html.push( `<option value="${ board.boardId }">${ board.boardTitle }</option>` );
 		} );
+		$( "#boardList" ).empty().append( html.join( "" ) );
 		$( "#auth" ).hide();
 		$( "#boards" ).show();
 	};
 
-		// Create event listeners for when the user submits the form
 	$( document ).ready( function() {
 		const connector = createConnector();
 		tableau.registerConnector( connector );
