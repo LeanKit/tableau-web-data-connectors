@@ -1,0 +1,23 @@
+{
+  "name": "tableau-web-data-connectors",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reverentgeek/tableau-web-data-connectors.git"
+  },
+  "author": "David Neal <david@reverentgeek.com> (http://reverentgeek.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reverentgeek/tableau-web-data-connectors/issues"
+  },
+  "homepage": "https://github.com/reverentgeek/tableau-web-data-connectors#readme",
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-leankit": "^4.3.0"
+  }
+}
