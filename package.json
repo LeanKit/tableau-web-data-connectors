@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"lint": "eslint --fix src/*.js",
-	"build": "babel src -d lib"
+    "lint": "eslint --fix src/*.js",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.10.0",
     "eslint-config-leankit": "^4.3.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
   }
 }
