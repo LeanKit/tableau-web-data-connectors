@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix *.js"
+	"lint": "eslint --fix src/*.js",
+	"build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/reverentgeek/tableau-web-data-connectors#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^4.10.0",
     "eslint-config-leankit": "^4.3.0"
   }
