@@ -11,3 +11,7 @@
 .button {
 	margin-top: .75em;
 }
+
+#boardList {
+	min-height: 210px;
+}

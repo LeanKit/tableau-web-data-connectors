@@ -108,6 +108,8 @@
 		const m = url.match( /https?:[/]*[^/]*/ );
 		if ( m ) {
 			return `${ m[ 0 ] }/io/reporting/`;
+		} else if ( url ) {
+			return `https://${ url.replace( /[/].*/, "" ) }/io/reporting/`;
 		}
 		return null;
 	};
@@ -180,6 +182,13 @@
 				const token = $( "#token" ).val().trim();
 				getBoards( { baseUrl, token } ).then( displayBoards ).catch( apiError );
 			}
+		} );
+
+		$( "#backButton" ).click( () => {
+			$( "#errorMsg" ).hide();
+			$( "#boards" ).hide();
+			$( "#getBoards" ).removeClass( "is-loading" );
+			$( "#auth" ).show();
 		} );
 
 		$( "#submitButton" ).click( () => {
