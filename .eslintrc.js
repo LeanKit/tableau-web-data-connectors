@@ -6,12 +6,10 @@ module.exports = {
 		"init-declarations": 0,
 		"no-new-func": 0
 	},
-	env: {
-		browser: true
-	},
 	globals: {
-		"$": true,
-		"tableau": true,
-		"axios": true
+		"tableau": true
+	},
+	parserOptions: {
+		sourceType: "module"
 	}
 };
