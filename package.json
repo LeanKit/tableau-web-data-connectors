@@ -4,8 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix src/*.js",
-    "build": "babel src -d lib"
+    "eslint": "eslint --fix src/*.js",
+    "prebuild": "npm run eslint",
+    "build": "npm run webpack",
+    "build:html": "node tasks/html",
+    "watch:build": "onchange 'src/*.js' -- npm run build",
+    "precommit": "npm run build",
+    "prewebpack": "npm run build:html",
+    "webpack": "webpack",
+    "deploy": "npm-run-all deploy:cards deploy:comments",
+    "deploy:cards": "cp cards*.html ../../testing/webdataconnector/Examples/html && cp ./dist/cards.bundle.js ../../testing/webdataconnector/Examples/html/dist",
+    "deploy:comments": "cp comments*.html ../../testing/webdataconnector/Examples/html && cp ./dist/comments.bundle.js ../../testing/webdataconnector/Examples/html/dist",
+    "postwebpack": "npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -19,11 +29,25 @@
   "homepage": "https://github.com/reverentgeek/tableau-web-data-connectors#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.10.0",
-    "eslint-config-leankit": "^4.3.0"
+    "css-loader": "^0.28.7",
+    "eslint": "^4.12.1",
+    "eslint-config-leankit": "^4.3.0",
+    "fs-extra": "^4.0.3",
+    "handlebars": "^4.0.11",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
+    "onchange": "^3.3.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
+    "bulma": "^0.6.1",
+    "jquery": "^3.2.1"
   }
 }
