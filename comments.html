@@ -27,14 +27,16 @@
 		<div class="row">
 			<div class="col">
 				<div id="auth">
-					<ul class="nav nav-tabs">
-						<li class="nav-item">
-							<a id="loginTab" class="nav-link active">Login</a>
-						</li>
-						<li class="nav-item">
-							<a id="tokenTab" class="nav-link">Use Token</a>
-						</li>
-					</ul>
+					<table>
+						<tr>
+							<td>
+								<button id="loginTab" class="btn btn-secondary active">Login</button>
+							</td>
+							<td>
+								<button id="tokenTab" class="btn btn-light">Use Token</button>
+							</td>
+						</tr>
+					</table>
 					<div class="form-group">
 						<label for="account">Account URL</label>
 						<input id="account" name="account" class="form-control" type="url" placeholder="https://myaccount.leankit.com">

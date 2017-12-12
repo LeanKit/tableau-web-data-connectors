@@ -27,15 +27,15 @@ const displayBoards = boards => {
 
 const registerEventHandlers = connectionName => {
 	$( "#loginTab" ).click( () => {
-		$( "#tokenTab" ).removeClass( "active" );
-		$( "#loginTab" ).addClass( "active" );
+		$( "#tokenTab" ).removeClass( "active" ).removeClass( "btn-secondary" ).addClass( "btn-light" );
+		$( "#loginTab" ).addClass( "active" ).removeClass( "btn-light" ).addClass( "btn-secondary" );
 		$( "#loginPanel" ).show();
 		$( "#tokenPanel" ).hide();
 	} );
 
 	$( "#tokenTab" ).click( () => {
-		$( "#loginTab" ).removeClass( "active" );
-		$( "#tokenTab" ).addClass( "active" );
+		$( "#loginTab" ).removeClass( "active" ).removeClass( "btn-secondary" ).addClass( "btn-light" );
+		$( "#tokenTab" ).addClass( "active" ).removeClass( "btn-light" ).addClass( "btn-secondary" );
 		$( "#loginPanel" ).hide();
 		$( "#tokenPanel" ).show();
 	} );

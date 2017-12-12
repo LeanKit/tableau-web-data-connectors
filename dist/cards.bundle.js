@@ -21627,15 +21627,15 @@ var displayBoards = function displayBoards(boards) {
 
 var registerEventHandlers = function registerEventHandlers(connectionName) {
 	(0, _jquery2.default)("#loginTab").click(function () {
-		(0, _jquery2.default)("#tokenTab").removeClass("active");
-		(0, _jquery2.default)("#loginTab").addClass("active");
+		(0, _jquery2.default)("#tokenTab").removeClass("active").removeClass("btn-secondary").addClass("btn-light");
+		(0, _jquery2.default)("#loginTab").addClass("active").removeClass("btn-light").addClass("btn-secondary");
 		(0, _jquery2.default)("#loginPanel").show();
 		(0, _jquery2.default)("#tokenPanel").hide();
 	});
 
 	(0, _jquery2.default)("#tokenTab").click(function () {
-		(0, _jquery2.default)("#loginTab").removeClass("active");
-		(0, _jquery2.default)("#tokenTab").addClass("active");
+		(0, _jquery2.default)("#loginTab").removeClass("active").removeClass("btn-secondary").addClass("btn-light");
+		(0, _jquery2.default)("#tokenTab").addClass("active").removeClass("btn-light").addClass("btn-secondary");
 		(0, _jquery2.default)("#loginPanel").hide();
 		(0, _jquery2.default)("#tokenPanel").show();
 	});
