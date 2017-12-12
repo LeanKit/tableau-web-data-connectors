@@ -21625,7 +21625,7 @@ var displayBoards = function displayBoards(boards) {
 	(0, _jquery2.default)("#boards").show();
 };
 
-var registerEventHandlers = function registerEventHandlers() {
+var registerEventHandlers = function registerEventHandlers(connectionName) {
 	(0, _jquery2.default)("#loginTab").click(function () {
 		(0, _jquery2.default)("#tokenTab").removeClass("active");
 		(0, _jquery2.default)("#loginTab").addClass("active");
@@ -21676,7 +21676,7 @@ var registerEventHandlers = function registerEventHandlers() {
 			// todo: validate boards selected
 		}
 		tableau.connectionData = JSON.stringify({ baseUrl: baseUrl, token: token, boardIds: boardIds });
-		tableau.connectionName = "LeanKit comment data"; // This will be the data source name in Tableau
+		tableau.connectionName = connectionName; // This will be the data source name in Tableau
 		tableau.submit(); // This sends the connector object to Tableau
 	});
 };
@@ -28251,7 +28251,7 @@ exports = module.exports = __webpack_require__(93)(undefined);
 
 
 // module
-exports.push([module.i, "/* .section {\n\tpadding: 1.5rem;\n}\n\n.column.has-vertically-aligned-content {\n\tdisplay: flex;\n\tflex-direction: column;\n\tjustify-content: center;\n}\n\n.button {\n\tmargin-top: .75em;\n} */\n.logo {\n  max-width: 50px; }\n\n#boardList {\n  min-height: 210px; }\n", ""]);
+exports.push([module.i, ".logo {\n  max-width: 50px; }\n\n#boardList {\n  min-height: 210px; }\n", ""]);
 
 // exports
 
@@ -28313,7 +28313,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	(0, _jquery2.default)(document).ready(function () {
 		var connector = createConnector();
 		tableau.registerConnector(connector);
-		(0, _common2.registerEventHandlers)();
+		(0, _common2.registerEventHandlers)("LeanKit comment data");
 	});
 })();
 
