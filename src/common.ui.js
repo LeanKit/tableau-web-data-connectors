@@ -1,3 +1,8 @@
+// import "bulma/bulma.sass";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.css";
+import "./styles.css";
 import $ from "jquery";
 import { urlToAccountName, 	getToken, getBoards, normalizeBaseUrl } from "./common";
 
@@ -5,7 +10,7 @@ const apiError = err => {
 	$( "#errorMsg" ).html( "Sorry, there was an error with your login credentials or token. Please verify and try again." ).show();
 	$( "#auth" ).show();
 	$( "#boards" ).hide();
-	$( "#getBoards" ).removeClass( "is-loading" );
+	$( "#getBoards" ).html( "Next &gt;" ).prop( "disabled", false );
 	tableau.log( `There was an api error ${ err }` );
 };
 
@@ -22,15 +27,15 @@ const displayBoards = boards => {
 
 const registerEventHandlers = () => {
 	$( "#loginTab" ).click( () => {
-		$( "#tokenTab" ).removeClass( "is-active" );
-		$( "#loginTab" ).addClass( "is-active" );
+		$( "#tokenTab" ).removeClass( "active" );
+		$( "#loginTab" ).addClass( "active" );
 		$( "#loginPanel" ).show();
 		$( "#tokenPanel" ).hide();
 	} );
 
 	$( "#tokenTab" ).click( () => {
-		$( "#loginTab" ).removeClass( "is-active" );
-		$( "#tokenTab" ).addClass( "is-active" );
+		$( "#loginTab" ).removeClass( "active" );
+		$( "#tokenTab" ).addClass( "active" );
 		$( "#loginPanel" ).hide();
 		$( "#tokenPanel" ).show();
 	} );
@@ -38,18 +43,18 @@ const registerEventHandlers = () => {
 	$( "#backButton" ).click( () => {
 		$( "#errorMsg" ).hide();
 		$( "#boards" ).hide();
-		$( "#getBoards" ).removeClass( "is-loading" );
+		$( "#getBoards" ).html( "Next &gt;" ).prop( "disabled", false );
 		$( "#auth" ).show();
 	} );
 
 	$( "#getBoards" ).click( () => {
 		$( "#errorMsg" ).hide();
-		$( "#getBoards" ).addClass( "is-loading" );
+		$( "#getBoards" ).html( "<i class=\"fa fa-spinner fa-spin\"></i> Getting boards..." ).prop( "disabled", true );
 		const baseUrl = normalizeBaseUrl( $( "#account" ).val().trim() );
 		$( "#account" ).val( baseUrl );
 		const account = urlToAccountName( baseUrl );
 		// todo: validate baseUrl and account
-		if ( $( "#loginTab" ).hasClass( "is-active" ) ) {
+		if ( $( "#loginTab" ).hasClass( "active" ) ) {
 			const username = $( "#username" ).val().trim();
 			const password = $( "#password" ).val().trim();
 			// todo: validate username/password

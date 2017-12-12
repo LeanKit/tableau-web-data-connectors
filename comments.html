@@ -1,91 +1,79 @@
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
 	<title>LeanKit Comments</title>
 	<meta http-equiv="Cache-Control" content="no-store" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<script src="https://connectors.tableau.com/libs/tableauwdc-2.3.latest.js" type="text/javascript"></script>
-	<script src="./dist/comments.bundle.js" type="text/javascript"></script>	
+	<script src="./dist/comments.bundle.js" type="text/javascript"></script>
 </head>
 
 <body>
-	<section class="section">
-		<div class="columns is-gapless">
-			<div class="column">
-				<figure class="image is-64x64">
-					<img src="./LeanKit.png" alt="LeanKit">
-				</figure>
-			</div>
-			<div class="column is-11 has-vertically-aligned-content">
-				LeanKit Comments
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<img src="./LeanKit.png" alt="LeanKit" class="logo float-left">
+				<h1>LeanKit Comments</h1>
 			</div>
 		</div>
-		<div id="errorMsg" class="notification is-danger" style="display: none;">
+		<div class="row">
+			<div class="col">
+				<div class="alert alert-danger" id="errorMsg" style="display: none;"></div>
+			</div>	
 		</div>
-		<div id="auth" class="container">
-			<div class="tabs">
-				<ul>
-					<li id="loginTab" class="is-active">
-						<a>Login</a>
-					</li>
-					<li id="tokenTab">
-						<a>Use Token</a>
-					</li>
-				</ul>
-			</div>
-			<div class="field">
-				<label class="label">Account URL</label>
-				<div class="control">
-					<input id="account" class="input" type="text" placeholder="https://myaccount.leankit.com">
-				</div>
-			</div>
-			<div id="loginPanel">
-				<div class="field">
-					<label class="label">Username</label>
-					<div class="control">
-						<input id="username" class="input" type="text" placeholder="name@mycompany.com">
+		<div class="row">
+			<div class="col">
+				<div id="auth">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a id="loginTab" class="nav-link active">Login</a>
+						</li>
+						<li class="nav-item">
+							<a id="tokenTab" class="nav-link">Use Token</a>
+						</li>
+					</ul>
+					<div class="form-group">
+						<label for="account">Account URL</label>
+						<input id="account" name="account" class="form-control" type="url" placeholder="https://myaccount.leankit.com">
+					</div>
+					<div id="loginPanel">
+						<div class="form-group">
+							<label for="username">Username</label>
+							<input id="username" name="username" class="form-control" type="text" placeholder="name@mycompany.com">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input id="password" name="password" class="form-control" type="password">
+						</div>
+					</div>
+					<div id="tokenPanel" style="display: none;">
+						<div class="form-group">
+							<label for="token">API token</label>
+							<input id="token" name="token" class="form-control" type="text" placeholder="Ex: eyJhbGciOiJIUzI1NiIsI...">
+						</div>
+					</div>
+					<div class="form-group">
+						<button id="getBoards" class="btn btn-primary">Next &gt;</button>
 					</div>
 				</div>
-				<div class="field">
-					<label class="label">Password</label>
-					<div class="control">
-						<input id="password" class="input" type="password">
+				<div id="boards" style="display: none;">
+					<div class="form-group">
+						<label for="boardList" class="label">Select which board(s) to include:</label>
+						<select id="boardList" name="boardList" class="form-control" multiple size="6">
+						</select>
+						<small class="form-text text-muted">Hint: Hold down the CTRL or CMD key to select multiple boards.</small>
 					</div>
-				</div>
-			</div>
-			<div id="tokenPanel" style="display: none;">
-				<div class="field">
-					<label class="label">API token</label>
-					<div class="control">
-						<input id="token" class="input" type="text" placeholder="Ex: eyJhbGciOiJIUzI1NiIsI...">
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="field">
-					<div class="control">
-						<button id="getBoards" class="button is-primary">Next &gt;</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="boards" class="select is-multiple" style="display: none;">
-			<div class="field">
-				<label class="label">Select which board(s) to include:</label>
-				<p class="help">Hint: Hold down the CTRL or CMD key to select multiple boards.</p>
-				<select id="boardList" multiple size="6">
-				</select>
-			</div>
-			<div class="container">
-				<div class="field">
-					<div class="control">
-						<button id="backButton" class="button">&lt; Back</button>							
-						<button id="submitButton" class="button is-primary">Submit</button>
+					<div class="form-group">
+						<button id="backButton" class="btn">&lt; Back</button>							
+						<button id="submitButton" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 </body>
 
 </html>

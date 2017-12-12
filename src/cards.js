@@ -1,7 +1,4 @@
-import "babel-polyfill";
 import $ from "jquery";
-import "bulma/bulma.sass";
-import "./styles.css";
 import { getNextPage } from "./common";
 import { registerEventHandlers } from "./common.ui";
 

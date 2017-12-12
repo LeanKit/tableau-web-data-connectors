@@ -1,16 +1,4 @@
-.section {
-	padding: 1.5rem;
-}
-
-.column.has-vertically-aligned-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.button {
-	margin-top: .75em;
-}
+.logo { max-width: 50px; }
 
 #boardList {
 	min-height: 210px;

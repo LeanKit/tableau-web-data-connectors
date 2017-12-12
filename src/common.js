@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import axios from "axios";
 
 const urlToAccountName = url => {

@@ -1,4 +1,5 @@
 const path = require( "path" );
+const webpack = require( "webpack" );
 
 module.exports = {
 	entry: {
@@ -26,6 +27,17 @@ module.exports = {
 				"css-loader",
 				"sass-loader"
 			]
+		}, {
+			test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+			loader: "url-loader?limit=100000"
 		} ]
-	}
+	},
+	plugins: [
+		new webpack.ProvidePlugin( {
+			$: "jquery",
+			jQuery: "jquery",
+			"window.jQuery": "jquery",
+			Popper: [ "popper.js", "default" ]
+		} )
+	]
 };
