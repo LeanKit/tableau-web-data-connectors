@@ -25,7 +25,7 @@ const displayBoards = boards => {
 	$( "#boards" ).show();
 };
 
-const registerEventHandlers = () => {
+const registerEventHandlers = connectionName => {
 	$( "#loginTab" ).click( () => {
 		$( "#tokenTab" ).removeClass( "active" );
 		$( "#loginTab" ).addClass( "active" );
@@ -79,7 +79,7 @@ const registerEventHandlers = () => {
 			// todo: validate boards selected
 		}
 		tableau.connectionData = JSON.stringify( { baseUrl, token, boardIds } );
-		tableau.connectionName = "LeanKit comment data"; // This will be the data source name in Tableau
+		tableau.connectionName = connectionName; // This will be the data source name in Tableau
 		tableau.submit(); // This sends the connector object to Tableau
 	} );
 };

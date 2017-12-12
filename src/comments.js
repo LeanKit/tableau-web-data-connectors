@@ -41,6 +41,6 @@ import { registerEventHandlers } from "./common.ui";
 	$( document ).ready( function() {
 		const connector = createConnector();
 		tableau.registerConnector( connector );
-		registerEventHandlers();
+		registerEventHandlers( "LeanKit comment data" );
 	} );
 }() );
