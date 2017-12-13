@@ -21647,7 +21647,9 @@ var registerEventHandlers = function registerEventHandlers(connectionName) {
 		(0, _jquery2.default)("#auth").show();
 	});
 
-	(0, _jquery2.default)("#getBoards").click(function () {
+	var authform = (0, _jquery2.default)("#authform");
+	authform.submit(function (e) {
+		e.preventDefault();
 		(0, _jquery2.default)("#errorMsg").hide();
 		(0, _jquery2.default)("#getBoards").html("<i class=\"fa fa-spinner fa-spin\"></i> Getting boards...").prop("disabled", true);
 		var baseUrl = (0, _common.normalizeBaseUrl)((0, _jquery2.default)("#account").val().trim());
@@ -21666,7 +21668,7 @@ var registerEventHandlers = function registerEventHandlers(connectionName) {
 			var token = (0, _jquery2.default)("#token").val().trim();
 			(0, _common.getBoards)({ baseUrl: baseUrl, token: token }).then(displayBoards).catch(apiError);
 		}
-	});
+	}).bind(authform);
 
 	(0, _jquery2.default)("#submitButton").click(function () {
 		var baseUrl = (0, _jquery2.default)("#account").val();

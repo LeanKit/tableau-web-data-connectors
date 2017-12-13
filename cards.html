@@ -38,29 +38,31 @@
 						</tr>
 					</table>
 					<hr />
-					<div class="form-group">
-						<label for="account">Account URL</label>
-						<input id="account" name="account" class="form-control" type="url" placeholder="https://myaccount.leankit.com">
-					</div>
-					<div id="loginPanel">
+					<form id="authform">
 						<div class="form-group">
-							<label for="username">Username</label>
-							<input id="username" name="username" class="form-control" type="text" placeholder="name@mycompany.com">
+							<label for="account">Account URL</label>
+							<input id="account" name="account" class="form-control" type="url" placeholder="https://myaccount.leankit.com">
+						</div>
+						<div id="loginPanel">
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input id="username" name="username" class="form-control" type="text" placeholder="name@mycompany.com">
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input id="password" name="password" class="form-control" type="password">
+							</div>
+						</div>
+						<div id="tokenPanel" style="display: none;">
+							<div class="form-group">
+								<label for="token">API token</label>
+								<input id="token" name="token" class="form-control" type="text" placeholder="Ex: eyJhbGciOiJIUzI1NiIsI...">
+							</div>
 						</div>
 						<div class="form-group">
-							<label for="password">Password</label>
-							<input id="password" name="password" class="form-control" type="password">
+							<button id="getBoards" class="btn btn-primary" type="submit">Next &gt;</button>
 						</div>
-					</div>
-					<div id="tokenPanel" style="display: none;">
-						<div class="form-group">
-							<label for="token">API token</label>
-							<input id="token" name="token" class="form-control" type="text" placeholder="Ex: eyJhbGciOiJIUzI1NiIsI...">
-						</div>
-					</div>
-					<div class="form-group">
-						<button id="getBoards" class="btn btn-primary">Next &gt;</button>
-					</div>
+					</form>
 				</div>
 				<div id="boards" style="display: none;">
 					<div class="form-group">
