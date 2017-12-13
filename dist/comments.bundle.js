@@ -21616,7 +21616,7 @@ var apiError = function apiError(err) {
 
 var displayBoards = function displayBoards(boards) {
 	var html = [];
-	html.push("<option value=\"0\">All Boards</option>");
+	html.push("<option value=\"0\" selected=\"selected\">All Boards</option>");
 	boards.forEach(function (board) {
 		html.push("<option value=\"" + board.boardId + "\">" + board.boardTitle + "</option>");
 	});

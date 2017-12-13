@@ -16,7 +16,7 @@ const apiError = err => {
 
 const displayBoards = boards => {
 	const html = [];
-	html.push( "<option value=\"0\">All Boards</option>" );
+	html.push( "<option value=\"0\" selected=\"selected\">All Boards</option>" );
 	boards.forEach( board => {
 		html.push( `<option value="${ board.boardId }">${ board.boardTitle }</option>` );
 	} );
