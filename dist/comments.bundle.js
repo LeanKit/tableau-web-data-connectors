@@ -21668,7 +21668,7 @@ var registerEventHandlers = function registerEventHandlers(connectionName) {
 			var token = (0, _jquery2.default)("#token").val().trim();
 			(0, _common.getBoards)({ baseUrl: baseUrl, token: token }).then(displayBoards).catch(apiError);
 		}
-	}).bind(authform);
+	});
 
 	(0, _jquery2.default)("#submitButton").click(function () {
 		var baseUrl = (0, _jquery2.default)("#account").val();

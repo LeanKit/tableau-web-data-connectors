@@ -71,7 +71,7 @@ const registerEventHandlers = connectionName => {
 			const token = $( "#token" ).val().trim();
 			getBoards( { baseUrl, token } ).then( displayBoards ).catch( apiError );
 		}
-	} ).bind( authform );
+	} );
 
 	$( "#submitButton" ).click( () => {
 		const baseUrl = $( "#account" ).val();
