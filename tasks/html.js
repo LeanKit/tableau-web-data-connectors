@@ -30,6 +30,9 @@ const connectors = [ {
 }, {
 	title: "Blocked History",
 	bundle: "blockedhistory"
+}, {
+	title: "Lanes",
+	bundle: "lanes"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );
