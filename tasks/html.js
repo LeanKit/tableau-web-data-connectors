@@ -21,6 +21,9 @@ const connectors = [ {
 }, {
 	title: "Current User Assignments",
 	bundle: "currentuserassignments"
+}, {
+	title: "User Assignments History",
+	bundle: "userassignmentshistory"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );

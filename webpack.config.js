@@ -8,7 +8,8 @@ module.exports = {
 		tags: "./src/tags.js",
 		comments: "./src/comments.js",
 		currentuserassignments: "./src/currentuserassignments.js",
-		customfields: "./src/customfields.js"
+		customfields: "./src/customfields.js",
+		userassignmentshistory: "./src/userassignmentshistory.js"
 	},
 	output: {
 		filename: "[name].bundle.js",
