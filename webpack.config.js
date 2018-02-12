@@ -6,7 +6,8 @@ module.exports = {
 		cards: "./src/cards.js",
 		tasks: "./src/tasks.js",
 		tags: "./src/tags.js",
-		comments: "./src/comments.js"
+		comments: "./src/comments.js",
+		customfields: "./src/customfields.js"
 	},
 	output: {
 		filename: "[name].bundle.js",

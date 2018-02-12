@@ -15,6 +15,9 @@ const connectors = [ {
 }, {
 	title: "Tags",
 	bundle: "tags"
+}, {
+	title: "Custom Fields",
+	bundle: "customfields"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );
