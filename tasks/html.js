@@ -9,6 +9,9 @@ const connectors = [ {
 }, {
 	title: "Comments",
 	bundle: "comments"
+}, {
+	title: "Tasks",
+	bundle: "tasks"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );

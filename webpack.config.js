@@ -4,6 +4,7 @@ const webpack = require( "webpack" );
 module.exports = {
 	entry: {
 		cards: "./src/cards.js",
+		tasks: "./src/tasks.js",
 		comments: "./src/comments.js"
 	},
 	output: {
