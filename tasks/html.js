@@ -27,6 +27,9 @@ const connectors = [ {
 }, {
 	title: "Card Positions",
 	bundle: "cardpositions"
+}, {
+	title: "Blocked History",
+	bundle: "blockedhistory"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );

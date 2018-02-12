@@ -10,7 +10,8 @@ module.exports = {
 		currentuserassignments: "./src/currentuserassignments.js",
 		customfields: "./src/customfields.js",
 		userassignmentshistory: "./src/userassignmentshistory.js",
-		cardpositions: "./src/cardpositions.js"
+		cardpositions: "./src/cardpositions.js",
+		blockedhistory: "./src/blockedhistory.js"
 	},
 	output: {
 		filename: "[name].bundle.js",
