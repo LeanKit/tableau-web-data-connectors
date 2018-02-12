@@ -9,6 +9,33 @@ const connectors = [ {
 }, {
 	title: "Comments",
 	bundle: "comments"
+}, {
+	title: "Tasks",
+	bundle: "tasks"
+}, {
+	title: "Tags",
+	bundle: "tags"
+}, {
+	title: "Custom Fields",
+	bundle: "customfields"
+}, {
+	title: "Current User Assignments",
+	bundle: "currentuserassignments"
+}, {
+	title: "User Assignments History",
+	bundle: "userassignmentshistory"
+}, {
+	title: "Card Positions",
+	bundle: "cardpositions"
+}, {
+	title: "Blocked History",
+	bundle: "blockedhistory"
+}, {
+	title: "Lanes",
+	bundle: "lanes"
+}, {
+	title: "Connections",
+	bundle: "connections"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );

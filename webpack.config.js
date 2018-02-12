@@ -4,7 +4,16 @@ const webpack = require( "webpack" );
 module.exports = {
 	entry: {
 		cards: "./src/cards.js",
-		comments: "./src/comments.js"
+		tasks: "./src/tasks.js",
+		tags: "./src/tags.js",
+		comments: "./src/comments.js",
+		currentuserassignments: "./src/currentuserassignments.js",
+		customfields: "./src/customfields.js",
+		userassignmentshistory: "./src/userassignmentshistory.js",
+		cardpositions: "./src/cardpositions.js",
+		blockedhistory: "./src/blockedhistory.js",
+		lanes: "./src/lanes.js",
+		connections: "./src/connections.js"
 	},
 	output: {
 		filename: "[name].bundle.js",

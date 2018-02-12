@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 376);
+/******/ 	return __webpack_require__(__webpack_require__.s = 377);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28261,7 +28261,8 @@ exports.push([module.i, ".logo {\n  max-width: 50px; }\n\n#boardList {\n  min-he
 /* 373 */,
 /* 374 */,
 /* 375 */,
-/* 376 */
+/* 376 */,
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28277,10 +28278,10 @@ var _common2 = __webpack_require__(357);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var title = "LeanKit comment data";
-var id = "comments";
-var path = "export/comments.json";
-var cols = [{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "commentText", alias: "Comment Text", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "commentDate", alias: "Comment Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime }, { id: "commentPostedByUserId", alias: "Comment Posted By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }];
+var title = "LeanKit current user assignments data";
+var id = "currentuserassignments";
+var path = "export/userassignments/current.json";
+var cols = [{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedUserId", alias: "Assigned User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedUserFullName", alias: "Assigned User Full Name", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedUserEmailAddress", alias: "Assigned User Email Address", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedByUserId", alias: "Assigned By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedByUserFullName", alias: "Assigned By User Full Name", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedByUserEmailAddress", alias: "Assigned By User Email Address", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "assignedToDate", alias: "Assigned To Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.date }, { id: "cardTitle", alias: "Card Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "cardSize", alias: "Card Size", columnRole: "measure", dataType: tableau.dataTypeEnum.int }, { id: "priority", alias: "Priority", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "cardTypeId", alias: "Card Type ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "cardTypeTitle", alias: "Card Type Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "currentBoardId", alias: "Current Board ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "currentBoardTitle", alias: "Current Board Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }];
 
 (function () {
 	var createConnector = function createConnector() {

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 376);
+/******/ 	return __webpack_require__(__webpack_require__.s = 380);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28261,7 +28261,11 @@ exports.push([module.i, ".logo {\n  max-width: 50px; }\n\n#boardList {\n  min-he
 /* 373 */,
 /* 374 */,
 /* 375 */,
-/* 376 */
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28277,10 +28281,10 @@ var _common2 = __webpack_require__(357);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var title = "LeanKit comment data";
-var id = "comments";
-var path = "export/comments.json";
-var cols = [{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "commentText", alias: "Comment Text", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "commentDate", alias: "Comment Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime }, { id: "commentPostedByUserId", alias: "Comment Posted By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }];
+var title = "LeanKit card position data";
+var id = "cardpositions";
+var path = "export/cardpositions.json";
+var cols = [{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "externalCardId", alias: "External Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "cardTitle", alias: "Card Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "laneEntryDate", alias: "Lane Entry Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime }, { id: "laneExitDate", alias: "Lane Exit Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime }, { id: "laneId", alias: "Lane ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "laneTitle", alias: "Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "boardId", alias: "Board ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "boardTitle", alias: "Board Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }];
 
 (function () {
 	var createConnector = function createConnector() {

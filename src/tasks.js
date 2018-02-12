@@ -2,23 +2,23 @@ import $ from "jquery";
 import { getNextPage } from "./common";
 import { registerEventHandlers } from "./common.ui";
 
-const title = "LeanKit card data";
-const id = "cards";
-const path = "export/comments.json";
+const title = "LeanKit tasks data";
+const id = "tasks";
+const path = "export/tasks.json";
 const cols = [
-	{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "parentCardId", alias: "Parent Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "taskId", alias: "Task ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "containingCardId", alias: "Containing Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "externalCardId", alias: "External Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "cardTitle", alias: "Card Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "parentCardTitle", alias: "Parent Card Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "cardType", alias: "Card Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "cardSize", alias: "Card Size", columnRole: "measure", dataType: tableau.dataTypeEnum.int },
+	{ id: "taskTitle", alias: "Task Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "containingCardTitle", alias: "Containing Card Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "taskType", alias: "Task Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "taskSize", alias: "Task Size", columnRole: "measure", dataType: tableau.dataTypeEnum.int },
 	{ id: "priority", alias: "Priority", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "customIcon", alias: "Custom Icon", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "isCardBlocked", alias: "Is Card Blocked", columnRole: "dimension", dataType: tableau.dataTypeEnum.bool },
+	{ id: "isTaskBlocked", alias: "Is Task Blocked", columnRole: "dimension", dataType: tableau.dataTypeEnum.bool },
 	{ id: "currentBlockedReason", alias: "Current Blocked Reason", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "cardExternalLinkName", alias: "Card External Link Name", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "cardExternalLinkUrl", alias: "Card External Link Url", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "taskExternalLinkName", alias: "Task External Link Name", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "taskExternalLinkUrl", alias: "Task External Link Url", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "creationDate", alias: "Creation Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
 	{ id: "plannedStartDate", alias: "Planned Start Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.date },
 	{ id: "actualStartDate", alias: "Actual Start Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
@@ -31,12 +31,9 @@ const cols = [
 	{ id: "lastActivityDate", alias: "Last Activity Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
 	{ id: "archivedDate", alias: "Archived Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
 	{ id: "lastMovedDate", alias: "Last Moved Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
-	{ id: "currentLaneId", alias: "Current Lane ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "currentLaneTitle", alias: "Current Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "parentLaneTitle", alias: "Parent Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.int },
-	{ id: "currentLaneType", alias: "Current Lane Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "currentBoardId", alias: "Current Board ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "currentBoardTitle", alias: "Current Board Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
+	{ id: "currentTaskboardLaneId", alias: "Current Taskboard Lane ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "currentTaskboardLaneTitle", alias: "Current Taskboard Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "currentTaskboardLaneType", alias: "Current Taskboard Lane Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
 ];
 
 ( function() {

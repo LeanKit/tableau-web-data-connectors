@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 376);
+/******/ 	return __webpack_require__(__webpack_require__.s = 378);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28261,7 +28261,9 @@ exports.push([module.i, ".logo {\n  max-width: 50px; }\n\n#boardList {\n  min-he
 /* 373 */,
 /* 374 */,
 /* 375 */,
-/* 376 */
+/* 376 */,
+/* 377 */,
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28277,10 +28279,10 @@ var _common2 = __webpack_require__(357);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var title = "LeanKit comment data";
-var id = "comments";
-var path = "export/comments.json";
-var cols = [{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "commentText", alias: "Comment Text", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "commentDate", alias: "Comment Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime }, { id: "commentPostedByUserId", alias: "Comment Posted By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }];
+var title = "LeanKit custom fields data";
+var id = "customfields";
+var path = "export/customfields.json";
+var cols = [{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "currentBoardId", alias: "Board ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "externalCardId", alias: "External Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "customFieldId", alias: "Custom Field ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "label", alias: "Label", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "type", alias: "Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }, { id: "customFieldValue", alias: "Custom Field Value", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }];
 
 (function () {
 	var createConnector = function createConnector() {

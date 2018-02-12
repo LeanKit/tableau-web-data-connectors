@@ -2,14 +2,17 @@ import $ from "jquery";
 import { getNextPage } from "./common";
 import { registerEventHandlers } from "./common.ui";
 
-const title = "LeanKit comment data";
-const id = "comments";
-const path = "export/comments.json";
+const title = "LeanKit custom fields data";
+const id = "customfields";
+const path = "export/customfields.json";
 const cols = [
 	{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "commentText", alias: "Comment Text", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "commentDate", alias: "Comment Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
-	{ id: "commentPostedByUserId", alias: "Comment Posted By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
+	{ id: "currentBoardId", alias: "Board ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "externalCardId", alias: "External Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "customFieldId", alias: "Custom Field ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "label", alias: "Label", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "type", alias: "Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "customFieldValue", alias: "Custom Field Value", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
 ];
 
 ( function() {
