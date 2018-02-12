@@ -12,6 +12,9 @@ const connectors = [ {
 }, {
 	title: "Tasks",
 	bundle: "tasks"
+}, {
+	title: "Tags",
+	bundle: "tags"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );
