@@ -2,6 +2,16 @@ import $ from "jquery";
 import { getNextPage } from "./common";
 import { registerEventHandlers } from "./common.ui";
 
+const title = "LeanKit comment data";
+const id = "comments";
+const path = "export/comments.json";
+const cols = [
+	{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "commentText", alias: "Comment Text", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "commentDate", alias: "Comment Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
+	{ id: "commentPostedByUserId", alias: "Comment Posted By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
+];
+
 ( function() {
 	const createConnector = () => {
 		// Create the connector object
@@ -9,16 +19,9 @@ import { registerEventHandlers } from "./common.ui";
 
 		// Define the schema
 		connector.getSchema = schemaCallback => {
-			const cols = [
-				{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-				{ id: "commentText", alias: "Comment Text", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-				{ id: "commentDate", alias: "Comment Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
-				{ id: "commentPostedByUserId", alias: "Comment Posted By User ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
-			];
-
 			const tableInfo = {
-				id: "comments",
-				alias: "LeanKit comment data",
+				id,
+				alias: title,
 				columns: cols
 			};
 
@@ -27,7 +30,6 @@ import { registerEventHandlers } from "./common.ui";
 
 		// Download the data
 		connector.getData = ( table, doneCallback ) => {
-			const path = "export/comments.json";
 			const { baseUrl, token, boardIds } = JSON.parse( tableau.connectionData );
 			const limit = 500;
 
@@ -41,6 +43,6 @@ import { registerEventHandlers } from "./common.ui";
 	$( document ).ready( function() {
 		const connector = createConnector();
 		tableau.registerConnector( connector );
-		registerEventHandlers( "LeanKit comment data" );
+		registerEventHandlers( title );
 	} );
 }() );
