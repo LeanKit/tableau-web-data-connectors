@@ -9,7 +9,8 @@ module.exports = {
 		comments: "./src/comments.js",
 		currentuserassignments: "./src/currentuserassignments.js",
 		customfields: "./src/customfields.js",
-		userassignmentshistory: "./src/userassignmentshistory.js"
+		userassignmentshistory: "./src/userassignmentshistory.js",
+		cardpositions: "./src/cardpositions.js"
 	},
 	output: {
 		filename: "[name].bundle.js",
