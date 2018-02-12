@@ -12,7 +12,8 @@ module.exports = {
 		userassignmentshistory: "./src/userassignmentshistory.js",
 		cardpositions: "./src/cardpositions.js",
 		blockedhistory: "./src/blockedhistory.js",
-		lanes: "./src/lanes.js"
+		lanes: "./src/lanes.js",
+		connections: "./src/connections.js"
 	},
 	output: {
 		filename: "[name].bundle.js",

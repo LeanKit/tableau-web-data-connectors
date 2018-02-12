@@ -33,6 +33,9 @@ const connectors = [ {
 }, {
 	title: "Lanes",
 	bundle: "lanes"
+}, {
+	title: "Connections",
+	bundle: "connections"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );
