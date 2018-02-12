@@ -12,12 +12,13 @@
     "precommit": "npm run build",
     "prewebpack": "npm run build:html",
     "webpack": "webpack",
-    "deploy": "npm-run-all deploy:cards deploy:tasks deploy:comments deploy:tags deploy:customfields",
-    "deploy:cards": "cp cards*.html ../../testing/webdataconnector/Examples/html && cp ./dist/cards.bundle.js ../../testing/webdataconnector/Examples/html/dist",
+    "deploy": "npm-run-all deploy:cards deploy:tasks deploy:comments deploy:tags deploy:customfields deploy:currentuserassignments",
+	"deploy:cards": "cp cards*.html ../../testing/webdataconnector/Examples/html && cp ./dist/cards.bundle.js ../../testing/webdataconnector/Examples/html/dist",
     "deploy:tasks": "cp tasks*.html ../../testing/webdataconnector/Examples/html && cp ./dist/tasks.bundle.js ../../testing/webdataconnector/Examples/html/dist",
     "deploy:tags": "cp tags*.html ../../testing/webdataconnector/Examples/html && cp ./dist/tags.bundle.js ../../testing/webdataconnector/Examples/html/dist",
     "deploy:customfields": "cp customfields*.html ../../testing/webdataconnector/Examples/html && cp ./dist/customfields.bundle.js ../../testing/webdataconnector/Examples/html/dist",
-    "deploy:comments": "cp comments*.html ../../testing/webdataconnector/Examples/html && cp ./dist/comments.bundle.js ../../testing/webdataconnector/Examples/html/dist",
+	"deploy:comments": "cp comments*.html ../../testing/webdataconnector/Examples/html && cp ./dist/comments.bundle.js ../../testing/webdataconnector/Examples/html/dist",
+	"deploy:currentuserassignments": "cp currentuserassignments*.html ../../testing/webdataconnector/Examples/html && cp ./dist/currentuserassignments.bundle.js ../../testing/webdataconnector/Examples/html/dist",
     "postwebpack": "npm run deploy"
   },
   "repository": {

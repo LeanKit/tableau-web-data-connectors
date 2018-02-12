@@ -7,6 +7,7 @@ module.exports = {
 		tasks: "./src/tasks.js",
 		tags: "./src/tags.js",
 		comments: "./src/comments.js",
+		currentuserassignments: "./src/currentuserassignments.js",
 		customfields: "./src/customfields.js"
 	},
 	output: {

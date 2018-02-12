@@ -18,6 +18,9 @@ const connectors = [ {
 }, {
 	title: "Custom Fields",
 	bundle: "customfields"
+}, {
+	title: "Current User Assignments",
+	bundle: "currentuserassignments"
 } ];
 
 const rootDir = path.resolve( __dirname, ".." );
