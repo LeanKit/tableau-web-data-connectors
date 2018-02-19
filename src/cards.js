@@ -33,8 +33,12 @@ const cols = [
 	{ id: "lastMovedDate", alias: "Last Moved Date", columnRole: "dimension", dataType: tableau.dataTypeEnum.datetime },
 	{ id: "currentLaneId", alias: "Current Lane ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "currentLaneTitle", alias: "Current Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
-	{ id: "parentLaneTitle", alias: "Parent Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.int },
+	{ id: "parentLaneTitle", alias: "Parent Lane Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "parentLaneId", alias: "Parent Lane ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "currentLaneType", alias: "Current Lane Type", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "cardTypeId", alias: "Card Type ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "customIconId", alias: "Custom Icon ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
+	{ id: "currentLaneClass", alias: "Current Lane Class", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "currentBoardId", alias: "Current Board ID", columnRole: "dimension", dataType: tableau.dataTypeEnum.string },
 	{ id: "currentBoardTitle", alias: "Current Board Title", columnRole: "dimension", dataType: tableau.dataTypeEnum.string }
 ];
