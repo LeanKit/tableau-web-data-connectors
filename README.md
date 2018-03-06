@@ -11,6 +11,8 @@ Current list of LeanKit Tableau WDC's:
 * [Connections](https://leankit.github.io/tableau-web-data-connectors/connections.html)
 * [Current User Assignments](https://leankit.github.io/tableau-web-data-connectors/currentuserassignments.html)
 * [User Assignment History](https://leankit.github.io/tableau-web-data-connectors/userassignmentshistory.html)
+* [Current User Task Assignments](https://leankit.github.io/tableau-web-data-connectors/currentusertaskassignments.html)
+* [User Task Assignment History](https://leankit.github.io/tableau-web-data-connectors/usertaskassignmentshistory.html)
 * [Custom Fields](https://leankit.github.io/tableau-web-data-connectors/customfields.html)
 * [Lanes](https://leankit.github.io/tableau-web-data-connectors/lanes.html)
 * [Tags](https://leankit.github.io/tableau-web-data-connectors/tags.html)
