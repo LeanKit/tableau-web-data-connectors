@@ -25,6 +25,12 @@ const connectors = [ {
 	title: "User Assignments History",
 	bundle: "userassignmentshistory"
 }, {
+	title: "Current User Task Assignments",
+	bundle: "currentusertaskassignments"
+}, {
+	title: "User Task Assignments History",
+	bundle: "usertaskassignmentshistory"
+}, {
 	title: "Card Positions",
 	bundle: "cardpositions"
 }, {

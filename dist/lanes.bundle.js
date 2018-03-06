@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 382);
+/******/ 	return __webpack_require__(__webpack_require__.s = 384);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28267,7 +28267,9 @@ exports.push([module.i, ".logo {\n  max-width: 50px; }\n\n#boardList {\n  min-he
 /* 379 */,
 /* 380 */,
 /* 381 */,
-/* 382 */
+/* 382 */,
+/* 383 */,
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
