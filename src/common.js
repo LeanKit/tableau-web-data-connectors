@@ -27,10 +27,32 @@ const normalizeBaseUrl = url => {
 	return null;
 };
 
+const BOARD_LIMIT = 1000;
 const getBoards = ( { baseUrl, token } ) => {
-	const url = `${ baseUrl }export/boards.json?token=${ token }`;
-	return axios.get( url ).then( res => {
-		return res.data;
+	const url = `${ baseUrl }export/boards.json`;
+
+	return new Promise( ( res, rej ) => {
+		const boards = [];
+		const fetchBoards = ( offset = 0 ) => {
+			axios.get( url, {
+				params: {
+					token,
+					offset,
+					limit: BOARD_LIMIT
+				}
+			} ).then( ( { data } ) => {
+				boards.push( ...data );
+				/* If the number of boards exactly matches our limit,
+					   there is a good chance there are more pages of data */
+				if ( data.length === BOARD_LIMIT ) {
+					fetchBoards( offset + BOARD_LIMIT );
+				} else {
+					res( boards );
+				}
+			} ).catch( rej );
+		};
+
+		fetchBoards();
 	} );
 };
 

@@ -13900,6 +13900,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var urlToAccountName = function urlToAccountName(url) {
 	if (!url) {
 		return null;
@@ -13926,21 +13928,47 @@ var normalizeBaseUrl = function normalizeBaseUrl(url) {
 	return null;
 };
 
+var BOARD_LIMIT = 1000;
 var getBoards = function getBoards(_ref) {
 	var baseUrl = _ref.baseUrl,
 	    token = _ref.token;
 
-	var url = baseUrl + "export/boards.json?token=" + token;
-	return _axios2.default.get(url).then(function (res) {
-		return res.data;
+	var url = baseUrl + "export/boards.json";
+
+	return new Promise(function (res, rej) {
+		var boards = [];
+		var fetchBoards = function fetchBoards() {
+			var offset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+			_axios2.default.get(url, {
+				params: {
+					token: token,
+					offset: offset,
+					limit: BOARD_LIMIT
+				}
+			}).then(function (_ref2) {
+				var data = _ref2.data;
+
+				boards.push.apply(boards, _toConsumableArray(data));
+				/* If the number of boards exactly matches our limit,
+    	   there is a good chance there are more pages of data */
+				if (data.length === BOARD_LIMIT) {
+					fetchBoards(offset + BOARD_LIMIT);
+				} else {
+					res(boards);
+				}
+			}).catch(rej);
+		};
+
+		fetchBoards();
 	});
 };
 
-var getToken = function getToken(_ref2) {
-	var baseUrl = _ref2.baseUrl,
-	    account = _ref2.account,
-	    username = _ref2.username,
-	    password = _ref2.password;
+var getToken = function getToken(_ref3) {
+	var baseUrl = _ref3.baseUrl,
+	    account = _ref3.account,
+	    username = _ref3.username,
+	    password = _ref3.password;
 
 	return _axios2.default.post(baseUrl + "auth", {
 		email: username,
@@ -13951,16 +13979,16 @@ var getToken = function getToken(_ref2) {
 	});
 };
 
-var getNextPage = function getNextPage(_ref3) {
-	var tableau = _ref3.tableau,
-	    offset = _ref3.offset,
-	    baseUrl = _ref3.baseUrl,
-	    path = _ref3.path,
-	    token = _ref3.token,
-	    limit = _ref3.limit,
-	    boardIds = _ref3.boardIds,
-	    table = _ref3.table,
-	    doneCallback = _ref3.doneCallback;
+var getNextPage = function getNextPage(_ref4) {
+	var tableau = _ref4.tableau,
+	    offset = _ref4.offset,
+	    baseUrl = _ref4.baseUrl,
+	    path = _ref4.path,
+	    token = _ref4.token,
+	    limit = _ref4.limit,
+	    boardIds = _ref4.boardIds,
+	    table = _ref4.table,
+	    doneCallback = _ref4.doneCallback;
 
 	var url = "" + baseUrl + path + "?token=" + token + "&limit=" + limit + "&offset=" + offset + "&boardId=" + boardIds.join(",");
 	return _axios2.default.get(url).then(function (res) {
