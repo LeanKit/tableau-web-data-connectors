@@ -5,12 +5,15 @@ const urlToAccountName = url => {
 	if ( !url ) {
 		return null;
 	}
+
 	if ( url.startsWith( "http://localhost" ) ) {
 		return "d06";
 	}
+
 	if ( url.startsWith( "http" ) ) {
 		return url.replace( /https?:[/]*/, "" ).replace( /\..*/, "" );
 	}
+
 	return null;
 };
 
