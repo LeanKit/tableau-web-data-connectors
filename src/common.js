@@ -84,10 +84,30 @@ const getNextPage = ( { tableau, offset, baseUrl, path, token, limit, boardIds, 
 	} );
 };
 
+const MS_TRUNCATE = 19;
+
+const tableTransform = ( { tableauTable, cols } ) => {
+	const dateTimeCols = cols.filter( c => c.dataType === tableau.dataTypeEnum.datetime ).map( c => c.id );
+
+	return {
+		appendRows( rows ) {
+			rows.forEach( row => {
+				dateTimeCols.forEach( colKey => {
+					if ( row[ colKey ] ) {
+						row[ colKey ] = `${ row[ colKey ].substr( 0, MS_TRUNCATE ) }Z`;
+					}
+				} );
+			} );
+			tableauTable.appendRows( rows );
+		}
+	};
+};
+
 module.exports = {
 	urlToAccountName,
 	getToken,
 	getBoards,
 	normalizeBaseUrl,
-	getNextPage
+	getNextPage,
+	tableTransform
 };

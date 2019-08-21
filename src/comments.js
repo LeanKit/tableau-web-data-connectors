@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { getNextPage } from "./common";
+import { getNextPage, tableTransform } from "./common";
 import { registerEventHandlers } from "./common.ui";
 
 const title = "LeanKit comment data";
@@ -29,9 +29,11 @@ const cols = [
 		};
 
 		// Download the data
-		connector.getData = ( table, doneCallback ) => {
+		connector.getData = ( tableauTable, doneCallback ) => {
 			const { baseUrl, token, boardIds } = JSON.parse( tableau.connectionData );
 			const limit = 500;
+
+			const table = tableTransform( { tableauTable, cols } );
 
 			getNextPage( { tableau, offset: 0, baseUrl, path, token, limit, boardIds, table, doneCallback } );
 		};
