@@ -1,4 +1,4 @@
-require( "babel-polyfill" );
+require( "@babel/polyfill" );
 const chai = require( "chai" );
 
 global.sinon = require( "sinon" );

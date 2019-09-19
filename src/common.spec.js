@@ -1,7 +1,7 @@
 import commonFactory from "inject-loader!./common";
 
 describe( "common utilities", () => {
-	let common, commonUi, axios, jQuery;
+	let common, axios;
 
 	const baseUrl = "https://calzone.leankit.com/io/reporting/";
 
@@ -10,13 +10,8 @@ describe( "common utilities", () => {
 			get: sinon.stub(),
 			post: sinon.stub()
 		};
-		commonUi = {
-			registerEventHandlers: sinon.stub()
-		};
 		common = commonFactory( {
-			axios,
-			"./common.ui": commonUi,
-			jquery: jQuery
+			axios
 		} );
 	} );
 
@@ -300,10 +295,6 @@ describe( "common utilities", () => {
 	} );
 
 	describe( "tableTransform", () => {
-
-	} );
-
-	describe( "startConnector", () => {
 
 	} );
 } );

@@ -1,4 +1,4 @@
-import { startConnector } from "./common";
+import startConnector from "./connector";
 
 const title = "LeanKit card position data";
 const id = "cardpositions";

@@ -1,4 +1,4 @@
-import { startConnector } from "./common";
+import startConnector from "./connector";
 
 const title = "LeanKit tags data";
 const id = "tags";

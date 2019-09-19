@@ -1,10 +1,18 @@
 const nodeExternals = require( "webpack-node-externals" );
 const path = require( "path" );
+const glob = require( "glob" );
 
 module.exports = {
 	mode: "development",
 	target: "node", // webpack should compile node compatible code
+	stats: "errors-only",
 	externals: [ nodeExternals() ], // in order to ignore all modules in node_modules folder
+	entry: {
+		spec: [ ...glob.sync( "./src/**/*.spec.js" ) ]
+	},
+	output: {
+		path: path.resolve( __dirname, "_spec" )
+	},
 	module: {
 		rules: [
 			{
@@ -13,14 +21,17 @@ module.exports = {
 				use: {
 					loader: "babel-loader",
 					options: {
-						presets: [ "env" ]
+						plugins: [
+							"babel-plugin-istanbul"
+						]
 					}
 				}
 			}, {
-				test: /\.css$/,
+				test: /\.(css|scss)$/,
 				use: [
 					"style-loader",
-					"css-loader"
+					"css-loader",
+					"sass-loader"
 				]
 			}
 		]

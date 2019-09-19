@@ -1,4 +1,4 @@
-import { startConnector } from "./common";
+import startConnector from "./connector";
 const title = "LeanKit user task assignments history data";
 const id = "usertaskassignmentshistory";
 const path = "export/usertaskassignments/history.json";

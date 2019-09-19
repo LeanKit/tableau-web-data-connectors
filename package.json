@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha-webpack",
+    "test": "npm run test:cover",
+    "test:only": "npm-run-all test:build test:mocha",
+    "test:cover": "NODE_ENV=test nyc -- npm run test:mocha",
+    "pretest:cover": "npm run test:build",
+    "test:build": "webpack --config webpack.test.config.js",
+    "test:mocha": "mocha _spec/spec.js",
+    "test:watch": "npm-run-all -p test:build:*",
+    "test:build:watch": "npm run test:build -- --watch",
+    "test:build:change": "onchange '_spec/spec.js' -- npm run test:mocha",
     "eslint": "eslint --fix src/*.js",
     "prebuild": "npm run eslint",
     "build": "npm run webpack",
@@ -13,21 +21,21 @@
     "precommit": "npm run build",
     "prewebpack": "npm run build:html",
     "webpack": "webpack",
-    "deploy": "npm-run-all deploy:cards deploy:tasks deploy:comments deploy:tags deploy:customfields deploy:currentuserassignments deploy:userassignmentshistory deploy:currentusertaskassignments deploy:usertaskassignmentshistory deploy:cardpositions deploy:blockedhistory deploy:lanes deploy:connections",
-    "deploy:cards": "cp cards*.html ../webdataconnector/Examples/html && cp ./dist/cards.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:tasks": "cp tasks*.html ../webdataconnector/Examples/html && cp ./dist/tasks.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:tags": "cp tags*.html ../webdataconnector/Examples/html && cp ./dist/tags.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:customfields": "cp customfields*.html ../webdataconnector/Examples/html && cp ./dist/customfields.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:comments": "cp comments*.html ../webdataconnector/Examples/html && cp ./dist/comments.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:currentuserassignments": "cp currentuserassignments*.html ../webdataconnector/Examples/html && cp ./dist/currentuserassignments.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:userassignmentshistory": "cp userassignmentshistory*.html ../webdataconnector/Examples/html && cp ./dist/userassignmentshistory.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:currentusertaskassignments": "cp currentusertaskassignments*.html ../webdataconnector/Examples/html && cp ./dist/currentusertaskassignments.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:usertaskassignmentshistory": "cp usertaskassignmentshistory*.html ../webdataconnector/Examples/html && cp ./dist/usertaskassignmentshistory.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:cardpositions": "cp cardpositions*.html ../webdataconnector/Examples/html && cp ./dist/cardpositions.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:blockedhistory": "cp blockedhistory*.html ../webdataconnector/Examples/html && cp ./dist/blockedhistory.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:lanes": "cp lanes*.html ../webdataconnector/Examples/html && cp ./dist/lanes.bundle.js ../webdataconnector/Examples/html/dist",
-    "deploy:connections": "cp connections*.html ../webdataconnector/Examples/html && cp ./dist/connections.bundle.js ../webdataconnector/Examples/html/dist",
-    "postwebpack": "npm run deploy"
+    "predeploy": "npm run build",
+    "deploy": "npm-run-all deploy:*",
+    "deploy:cards": "cp cards*.html ../webdataconnector/Examples/html && cp ./dist/cards.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:tasks": "cp tasks*.html ../webdataconnector/Examples/html && cp ./dist/tasks.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:tags": "cp tags*.html ../webdataconnector/Examples/html && cp ./dist/tags.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:customfields": "cp customfields*.html ../webdataconnector/Examples/html && cp ./dist/customfields.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:comments": "cp comments*.html ../webdataconnector/Examples/html && cp ./dist/comments.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:currentuserassignments": "cp currentuserassignments*.html ../webdataconnector/Examples/html && cp ./dist/currentuserassignments.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:userassignmentshistory": "cp userassignmentshistory*.html ../webdataconnector/Examples/html && cp ./dist/userassignmentshistory.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:currentusertaskassignments": "cp currentusertaskassignments*.html ../webdataconnector/Examples/html && cp ./dist/currentusertaskassignments.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:usertaskassignmentshistory": "cp usertaskassignmentshistory*.html ../webdataconnector/Examples/html && cp ./dist/usertaskassignmentshistory.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:cardpositions": "cp cardpositions*.html ../webdataconnector/Examples/html && cp ./dist/cardpositions.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:blockedhistory": "cp blockedhistory*.html ../webdataconnector/Examples/html && cp ./dist/blockedhistory.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:lanes": "cp lanes*.html ../webdataconnector/Examples/html && cp ./dist/lanes.bundle.js ../webdataconnector/Examples/html/dist/.",
+    "deploy:connections": "cp connections*.html ../webdataconnector/Examples/html && cp ./dist/connections.bundle.js ../webdataconnector/Examples/html/dist/."
   },
   "repository": {
     "type": "git",
@@ -39,22 +47,45 @@
     "url": "https://github.com/reverentgeek/tableau-web-data-connectors/issues"
   },
   "homepage": "https://github.com/reverentgeek/tableau-web-data-connectors#readme",
+  "mocha": {
+    "require": [
+      "spec-setup.js"
+    ],
+    "reporter": [
+      "spec"
+    ]
+  },
+  "nyc": {
+    "instrument": false,
+    "sourceMap": false,
+    "cache": true,
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "include": [
+      "src/*.js"
+    ],
+    "exclude": [
+      "src/*.spec.js"
+    ]
+  },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-istanbul": "^5.2.0",
     "chai": "^4.2.0",
     "css-loader": "^3.2.0",
     "dirty-chai": "^2.0.1",
     "eslint": "^6.0.0",
     "eslint-config-leankit": "^5.0.0",
-    "file-loader": "^1.1.5",
     "fs-extra": "^4.0.3",
     "handlebars": "^4.2.0",
     "inject-loader": "^4.0.1",
     "mocha": "^6.2.0",
-    "mocha-webpack": "^2.0.0-beta.0",
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.2",
     "nyc": "^14.1.1",
@@ -69,11 +100,10 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
-    "bootstrap": "^4.0.0-beta.2",
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.12.9"
+    "bootstrap": "^4.3.0",
+    "jquery-slim": "^3.0.0"
   }
 }
