@@ -1,5 +1,9 @@
 --colors
 --full-trace
 --interactive false
+--require spec-setup.js
 --webpack-config webpack.test.config.js
-src/*.test.js
+--glob *.spec.js
+--recursive
+src/
+

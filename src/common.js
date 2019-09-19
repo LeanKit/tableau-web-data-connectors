@@ -1,13 +1,8 @@
-import "babel-polyfill";
 import axios from "axios";
 
 const urlToAccountName = url => {
 	if ( !url ) {
 		return null;
-	}
-
-	if ( url.startsWith( "http://localhost" ) ) {
-		return "d06";
 	}
 
 	if ( url.startsWith( "http" ) ) {
