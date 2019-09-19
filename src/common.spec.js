@@ -1,7 +1,7 @@
 import commonFactory from "inject-loader!./common";
 
 describe( "common utilities", () => {
-	let common, axios;
+	let common, commonUi, axios, jQuery;
 
 	const baseUrl = "https://calzone.leankit.com/io/reporting/";
 
@@ -10,7 +10,14 @@ describe( "common utilities", () => {
 			get: sinon.stub(),
 			post: sinon.stub()
 		};
-		common = commonFactory( { axios } );
+		commonUi = {
+			registerEventHandlers: sinon.stub()
+		};
+		common = commonFactory( {
+			axios,
+			"./common.ui": commonUi,
+			jquery: jQuery
+		} );
 	} );
 
 
@@ -177,5 +184,126 @@ describe( "common utilities", () => {
 		it( "should return the token", () => {
 			token.should.equal( "$ECURE" );
 		} );
+	} );
+
+	describe( "getNextPage", () => {
+		let tableau, table, offset, path, token, limit, boardIds, doneCallback;
+		beforeEach( () => {
+			path = "/somePath";
+			token = "TOKEN";
+			boardIds = [ "b1", "b2" ];
+			limit = 5;
+			offset = 0;
+			doneCallback = sinon.stub();
+			tableau = {
+				log: sinon.stub(),
+				abortWithError: sinon.stub()
+			};
+			table = {
+				appendRows: sinon.stub()
+			};
+		} );
+		describe( "when no data is returned", () => {
+			beforeEach( async () => {
+				axios.get.resolves( {} );
+				await common.getNextPage( {
+					tableau,
+					offset: 1,
+					baseUrl,
+					path,
+					token,
+					limit,
+					boardIds,
+					table,
+					doneCallback
+				} );
+			} );
+			it( "should only make one request", () => {
+				axios.get.should.be.calledOnce();
+			} );
+			it( "should call done", () => {
+				doneCallback.should.be.calledOnce();
+			} );
+		} );
+		describe( "when no data is returned and the offset is zero", () => {
+			beforeEach( () => {
+				axios.get.resolves( {} );
+				return common.getNextPage( {
+					tableau,
+					offset,
+					baseUrl,
+					path,
+					token,
+					limit,
+					boardIds,
+					table,
+					doneCallback
+				} );
+			} );
+			it( "should only make one request", () => {
+				axios.get.should.be.calledOnce();
+			} );
+			it( "should abort with error", () => {
+				tableau.abortWithError.should.be.calledOnce()
+					.and.calledWith( "No data was returned." );
+			} );
+		} );
+		describe( "when there is an error", () => {
+			beforeEach( () => {
+				axios.get.rejects( new Error( "NOPE" ) );
+				return common.getNextPage( {
+					tableau,
+					offset,
+					baseUrl,
+					path,
+					token,
+					limit,
+					boardIds,
+					table,
+					doneCallback
+				} );
+			} );
+			it( "should log the rror", () => {
+				tableau.log.should.be.calledOnce()
+					.and.calledWith( "There was an error fetching data Error: NOPE" );
+			} );
+			it( "should abort with error", () => {
+				tableau.abortWithError.should.be.calledOnce()
+					.and.calledWith( "Sorry, there was an error retrieving data." );
+			} );
+		} );
+		describe( "when data is returned", () => {
+			beforeEach( async () => {
+				axios.get.onFirstCall().resolves( { data: [ "r1", "r2" ] } );
+				axios.get.onSecondCall().resolves( { data: [ "r3" ] } );
+				await common.getNextPage( {
+					tableau,
+					offset,
+					baseUrl,
+					path,
+					token,
+					limit: 2,
+					boardIds,
+					table,
+					doneCallback
+				} );
+			} );
+			it( "should only make one request", () => {
+				axios.get.should.be.calledTwice()
+					.and.be.calledWith( "https://calzone.leankit.com/io/reporting//somePath?token=TOKEN&limit=2&offset=0&boardId=b1,b2" )
+					.and.be.calledWith( "https://calzone.leankit.com/io/reporting//somePath?token=TOKEN&limit=2&offset=2&boardId=b1,b2" );
+			} );
+			it( "should call done", () => {
+				doneCallback.should.be.calledOnce();
+			} );
+		} );
+	} );
+
+	describe( "tableTransform", () => {
+
+	} );
+
+	describe( "startConnector", () => {
+
 	} );
 } );
