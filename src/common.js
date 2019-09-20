@@ -86,7 +86,7 @@ const getNextPage = ( { tableau, offset, baseUrl, path, token, limit, boardIds, 
 
 const MS_TRUNCATE = 19;
 
-const tableTransform = ( { tableauTable, cols } ) => {
+const tableTransform = ( { tableau, tableauTable, cols } ) => {
 	const dateTimeCols = cols.filter( c => c.dataType === tableau.dataTypeEnum.datetime ).map( c => c.id );
 
 	return {

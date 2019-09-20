@@ -24,7 +24,7 @@ export default function startConnector( tableau, { title, id, path, cols } ) {
 			const { baseUrl, token, boardIds } = JSON.parse( tableau.connectionData );
 			const limit = 500;
 
-			const table = tableTransform( { tableauTable, cols } );
+			const table = tableTransform( { tableau, tableauTable, cols } );
 
 			getNextPage( { tableau, offset: 0, baseUrl, path, token, limit, boardIds, table, doneCallback } );
 		};

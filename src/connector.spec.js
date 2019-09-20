@@ -106,6 +106,7 @@ describe( "connector", () => {
 				it( "should call transformTable", () => {
 					common.tableTransform.should.be.calledOnce
 						.and.calledWith( {
+							tableau,
 							tableauTable: "TABLE",
 							cols: [
 								{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: "DATATYPE" }

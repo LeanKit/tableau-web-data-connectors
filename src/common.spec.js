@@ -313,6 +313,37 @@ describe( "common utilities", () => {
 	} );
 
 	describe( "tableTransform", () => {
+		let tableau, tableauTable;
+		beforeEach( () => {
+			tableau = {
+				dataTypeEnum: {
+					datetime: "DATETIME"
+				}
+			};
+			tableauTable = {
+				appendRows: sinon.stub()
+			};
+			const { appendRows } = common.tableTransform( {
+				tableau,
+				tableauTable,
+				cols: [
+					{ id: "cardId", alias: "Card ID", columnRole: "dimension", dataType: "STRING" },
+					{ id: "whenItHappenedWas", alias: "When It Happened Was", columnRole: "dimension", dataType: "DATETIME" }
+				]
+			} );
 
+			appendRows( [
+				{ cardId: "c1234", whenItHappenedWas: "2019-04-15 19:05:14.9070000" },
+				{ cardId: "c456" }
+			] );
+		} );
+
+		it( "should transform the date before adding it to the table", () => {
+			tableauTable.appendRows.should.be.calledOnce()
+				.and.calledWith( [
+					{ cardId: "c1234", whenItHappenedWas: "2019-04-15 19:05:14Z" },
+					{ cardId: "c456" }
+				] );
+		} );
 	} );
 } );
