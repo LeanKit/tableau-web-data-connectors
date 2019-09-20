@@ -22,6 +22,7 @@ module.exports = {
 					loader: "babel-loader",
 					options: {
 						plugins: [
+							"babel-plugin-add-module-exports",
 							"babel-plugin-istanbul"
 						]
 					}

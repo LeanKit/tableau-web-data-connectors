@@ -43,6 +43,12 @@ describe( "common utilities", () => {
 	} );
 
 	describe( "normalizeBaseUrl", () => {
+		context( "when the url is empty", () => {
+			it( "should return null", () => {
+				should.equal( null, common.normalizeBaseUrl( "" ) );
+			} );
+		} );
+
 		context( "when the url is local host", () => {
 			describe( "when the url ends with a slash", () => {
 				it( "should return it unchanged", () => {
@@ -198,6 +204,7 @@ describe( "common utilities", () => {
 				appendRows: sinon.stub()
 			};
 		} );
+
 		describe( "when no data is returned", () => {
 			beforeEach( async () => {
 				axios.get.resolves( {} );
@@ -213,13 +220,16 @@ describe( "common utilities", () => {
 					doneCallback
 				} );
 			} );
+
 			it( "should only make one request", () => {
 				axios.get.should.be.calledOnce();
 			} );
+
 			it( "should call done", () => {
 				doneCallback.should.be.calledOnce();
 			} );
 		} );
+
 		describe( "when no data is returned and the offset is zero", () => {
 			beforeEach( () => {
 				axios.get.resolves( {} );
@@ -235,14 +245,17 @@ describe( "common utilities", () => {
 					doneCallback
 				} );
 			} );
+
 			it( "should only make one request", () => {
 				axios.get.should.be.calledOnce();
 			} );
+
 			it( "should abort with error", () => {
 				tableau.abortWithError.should.be.calledOnce()
 					.and.calledWith( "No data was returned." );
 			} );
 		} );
+
 		describe( "when there is an error", () => {
 			beforeEach( () => {
 				axios.get.rejects( new Error( "NOPE" ) );
@@ -258,15 +271,18 @@ describe( "common utilities", () => {
 					doneCallback
 				} );
 			} );
+
 			it( "should log the rror", () => {
 				tableau.log.should.be.calledOnce()
 					.and.calledWith( "There was an error fetching data Error: NOPE" );
 			} );
+
 			it( "should abort with error", () => {
 				tableau.abortWithError.should.be.calledOnce()
 					.and.calledWith( "Sorry, there was an error retrieving data." );
 			} );
 		} );
+
 		describe( "when data is returned", () => {
 			beforeEach( async () => {
 				axios.get.onFirstCall().resolves( { data: [ "r1", "r2" ] } );
@@ -283,11 +299,13 @@ describe( "common utilities", () => {
 					doneCallback
 				} );
 			} );
+
 			it( "should only make one request", () => {
 				axios.get.should.be.calledTwice()
 					.and.be.calledWith( "https://calzone.leankit.com/io/reporting//somePath?token=TOKEN&limit=2&offset=0&boardId=b1,b2" )
 					.and.be.calledWith( "https://calzone.leankit.com/io/reporting//somePath?token=TOKEN&limit=2&offset=2&boardId=b1,b2" );
 			} );
+
 			it( "should call done", () => {
 				doneCallback.should.be.calledOnce();
 			} );
