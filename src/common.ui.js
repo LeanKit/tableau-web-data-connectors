@@ -1,8 +1,5 @@
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "font-awesome/css/font-awesome.css";
-import "./styles.css";
-import $ from "jquery";
+import "./styles.scss";
+import $ from "jquery-slim";
 import { urlToAccountName, 	getToken, getBoards, normalizeBaseUrl } from "./common";
 
 const apiError = err => {
@@ -50,7 +47,7 @@ const registerEventHandlers = connectionName => {
 	authform.submit( e => {
 		e.preventDefault();
 		$( "#errorMsg" ).hide();
-		$( "#getBoards" ).html( "<i class=\"fa fa-spinner fa-spin\"></i> Getting boards..." ).prop( "disabled", true );
+		$( "#getBoards" ).html( "Getting boards..." ).prop( "disabled", true );
 		const baseUrl = normalizeBaseUrl( $( "#account" ).val().trim() );
 		$( "#account" ).val( baseUrl );
 		const account = urlToAccountName( baseUrl );
