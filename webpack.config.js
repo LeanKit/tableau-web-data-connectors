@@ -2,20 +2,21 @@ const path = require( "path" );
 const webpack = require( "webpack" );
 
 module.exports = {
+	mode: "production",
 	entry: {
-		cards: "./src/cards.js",
-		tasks: "./src/tasks.js",
-		tags: "./src/tags.js",
-		comments: "./src/comments.js",
-		currentuserassignments: "./src/currentuserassignments.js",
-		currentusertaskassignments: "./src/currentusertaskassignments.js",
-		customfields: "./src/customfields.js",
-		userassignmentshistory: "./src/userassignmentshistory.js",
-		usertaskassignmentshistory: "./src/usertaskassignmentshistory.js",
-		cardpositions: "./src/cardpositions.js",
-		blockedhistory: "./src/blockedhistory.js",
-		lanes: "./src/lanes.js",
-		connections: "./src/connections.js"
+		cards: [ "@babel/polyfill", "./src/cards.js" ],
+		tasks: [ "@babel/polyfill", "./src/tasks.js" ],
+		tags: [ "@babel/polyfill", "./src/tags.js" ],
+		comments: [ "@babel/polyfill", "./src/comments.js" ],
+		currentuserassignments: [ "@babel/polyfill", "./src/currentuserassignments.js" ],
+		currentusertaskassignments: [ "@babel/polyfill", "./src/currentusertaskassignments.js" ],
+		customfields: [ "@babel/polyfill", "./src/customfields.js" ],
+		userassignmentshistory: [ "@babel/polyfill", "./src/userassignmentshistory.js" ],
+		usertaskassignmentshistory: [ "@babel/polyfill", "./src/usertaskassignmentshistory.js" ],
+		cardpositions: [ "@babel/polyfill", "./src/cardpositions.js" ],
+		blockedhistory: [ "@babel/polyfill", "./src/blockedhistory.js" ],
+		lanes: [ "@babel/polyfill", "./src/lanes.js" ],
+		connections: [ "@babel/polyfill", "./src/connections.js" ]
 	},
 	output: {
 		filename: "[name].bundle.js",
@@ -26,10 +27,7 @@ module.exports = {
 			test: /\.js$/,
 			exclude: /node_modules/,
 			use: {
-				loader: "babel-loader",
-				options: {
-					presets: [ "env" ]
-				}
+				loader: "babel-loader"
 			}
 		}, {
 			test: /\.(css|sass|scss)$/,
@@ -39,16 +37,8 @@ module.exports = {
 				"sass-loader"
 			]
 		}, {
-			test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+			test: /\.png$/,
 			loader: "url-loader?limit=100000"
 		} ]
-	},
-	plugins: [
-		new webpack.ProvidePlugin( {
-			$: "jquery",
-			jQuery: "jquery",
-			"window.jQuery": "jquery",
-			Popper: [ "popper.js", "default" ]
-		} )
-	]
+	}
 };

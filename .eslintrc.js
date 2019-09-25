@@ -11,5 +11,15 @@ module.exports = {
 	},
 	parserOptions: {
 		sourceType: "module"
-	}
+	},
+	overrides: [
+		{
+			files: [ "*.spec.js", "client/spec/**/*.js" ],
+			extends: [ "leankit/test" ],
+			globals: {
+				sinon: true,
+				should: true
+			}
+		}
+	]
 };
